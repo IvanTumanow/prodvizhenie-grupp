@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, RefObject, useEffect, useRef } from "react";
+import { ComponentPropsWithoutRef, memo, RefObject, useEffect, useRef } from "react";
 import { gsap } from 'gsap';
 import SplitText from 'gsap/SplitText';
 
@@ -6,14 +6,14 @@ interface Props extends ComponentPropsWithoutRef<'p'> {
     containerRef: RefObject<HTMLElement | null>;
 }
 
-export default function PrettifyText({ containerRef, ...props }: Props) {
+function PrettifyText({ containerRef, ...props }: Props) {
     const ref = useRef<HTMLParagraphElement>(null);
 
     useEffect(() => {
         if (!containerRef.current || !ref.current) return;
         const split = SplitText.create(ref.current, {
             type: "lines,words",
-            wordsClass: "inline-block"
+            wordsClass: `inline-block ${props.className ? '' : 'text-[#5E636F]'}`
         });
 
         const anim = gsap.from(split.words, {
@@ -53,3 +53,5 @@ export default function PrettifyText({ containerRef, ...props }: Props) {
         </p>
     );
 }
+
+export default memo(PrettifyText);

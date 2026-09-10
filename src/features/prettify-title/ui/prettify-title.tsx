@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, RefObject, useEffect, useRef } from "react";
+import { ComponentPropsWithoutRef, memo, RefObject, useEffect, useRef } from "react";
 import { gsap } from 'gsap';
 import SplitText from 'gsap/SplitText';
 
@@ -9,7 +9,7 @@ type Props<Tag extends Heading> = {
     containerRef: RefObject<HTMLElement | null>;
 } & Omit<ComponentPropsWithoutRef<Tag>, "as">;
 
-export default function PrettifyTitle<Tag extends Heading = "h2">({
+function PrettifyTitle<Tag extends Heading = "h2">({
     as,
     containerRef,
     ...props
@@ -20,7 +20,7 @@ export default function PrettifyTitle<Tag extends Heading = "h2">({
     useEffect(() => {
         if (!containerRef.current || !ref.current) return;
         const split = SplitText.create(ref.current, {
-            type: "chars",
+            type: "chars, words",
             charsClass: "inline-block"
         });
 
@@ -34,14 +34,10 @@ export default function PrettifyTitle<Tag extends Heading = "h2">({
             opacity: 0,
             scale: 0.5,
             y: 15,
-            delay: props.className ? 0.5 : 0,
-            rotation: () => gsap.utils.random(-15, 15),
+            rotation: 'random(-15, 15)',
             transformOrigin: "center bottom",
             duration: 0.5,
-            stagger: {
-                each: 0.02,
-                from: "start",
-            },
+            stagger: 0.02,
             ease: "elastic.out(1, 0.6)",
             clearProps: "all",
         });
@@ -51,7 +47,9 @@ export default function PrettifyTitle<Tag extends Heading = "h2">({
             anim.kill();
             split.revert();
         };
-    }, [containerRef, props.className]);
+    }, [containerRef]);
 
     return <Title {...props} ref={ref}>{props.children}</Title>;
 }
+
+export default memo(PrettifyTitle)

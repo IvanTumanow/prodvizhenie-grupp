@@ -35,7 +35,7 @@ export default function Block1({ title, description, items, ...props }: Props) {
                 backgroundColorClassName={props.backgroundColorClassName}
                 ref={containerRef}
             >
-                <div className="max-w-125 h-full z-10 relative">
+                <div className="h-full z-10 relative">
                     <PrettifyTitle
                         className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
                         containerRef={containerRef}

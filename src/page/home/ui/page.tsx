@@ -10,6 +10,7 @@ import Block1 from "@/src/widgets/example-blocks/ui/block1";
 
 import { gsap } from "gsap";
 import { HeroBanner } from '@/src/widgets/hero-banner';
+import { CompareBlock } from '@/src/widgets/compare-block';
 
 
 export default function HomePage() {
@@ -131,10 +132,8 @@ export default function HomePage() {
                     dataValueId={0}
                 />
 
-                <Block1
-                    title={blocks.COMPARE.title}
-                    description={blocks.COMPARE.description}
-                    items={blocks.COMPARE.items}
+                <CompareBlock
+                    {...blocks.COMPARE}
                     dataValueId={1}
                 />
 

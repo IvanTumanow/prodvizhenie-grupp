@@ -1,7 +1,7 @@
 import { PrettifyTitle } from "@/src/features/prettify-title";
 import { SectionContent, SectionContentProps } from "@/src/widgets/section-content";
 import { useRef } from "react";
-import { LeaderLine, LeadersLines } from "..";
+import { LeadersLines } from "..";
 
 interface Props extends SectionContentProps {
     title: string
