@@ -1,10 +1,8 @@
 'use client'
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@/shadcn/components/ui/card";
-import { useLayoutEffect, useRef } from "react";
-import gsap from 'gsap'
+import { useRef } from "react";
 
-import SplitText from 'gsap/SplitText'
 import { SectionContent, SectionContentProps } from "@/src/widgets/section-content";
 import { useScrollAway } from "../../scroll-away";
 import { PrettifyTitle } from "@/src/features/prettify-title";
@@ -20,7 +18,6 @@ export default function Block1({ title, description, items, ...props }: Props) {
     const containerRef = useRef<HTMLElement>(null)
 
     useScrollAway(containerRef)
-
 
     const test: string[] = ['left-[50%] top-[50%]', 'left-[80%] top-[50%]', 'left-[20%] top-[50%]', 'left-[70%] top-[100%]',]
 

@@ -1,44 +1,48 @@
 import { ComponentPropsWithoutRef, RefObject, useEffect, useRef } from "react";
-import { gsap } from 'gsap'
+import { gsap } from 'gsap';
 import SplitText from 'gsap/SplitText';
 
 interface Props extends ComponentPropsWithoutRef<'p'> {
-    containerRef: RefObject<HTMLElement | null>
+    containerRef: RefObject<HTMLElement | null>;
 }
 
 export default function PrettifyText({ containerRef, ...props }: Props) {
-    const ref = useRef(null)
+    const ref = useRef<HTMLParagraphElement>(null);
 
     useEffect(() => {
         if (!containerRef.current || !ref.current) return;
-
         const split = SplitText.create(ref.current, {
-            type: "words",
-            // autoSplit: true,
-            mask: "words",
+            type: "lines,words",
+            wordsClass: "inline-block"
         });
 
         const anim = gsap.from(split.words, {
-            // x: "100",
-            // y: "-10",
-            opacity: 0,
-            // duration: 1,
-            delay: props.className ? 0.3 : 0,
             scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top bottom-=60%",
+                start: "top bottom-=70%",
                 end: "top center",
-                toggleActions: "play none restart reverse",
+                toggleActions: "play none none reverse",
             },
-            stagger: 0.01,
-        })
+            opacity: 0,
+            y: 20, 
+            rotation: () => gsap.utils.random(-4, 4),
+            duration: 0.6,
+            delay: props.className ? 0.4 : 0.2,
+            stagger: {
+                each: 0.03,
+                from: "start",
+            },
+            ease: "back.out(1.2)", 
+            
+            clearProps: "all",
+        });
 
         return () => {
-            anim.scrollTrigger?.kill()
-            anim.kill()
-            split.revert()
-        }
-    }, [ref, containerRef, props.className])
+            anim.scrollTrigger?.kill();
+            anim.kill();
+            split.revert();
+        };
+    }, [containerRef, props.className]);
 
     return (
         <p
@@ -47,5 +51,5 @@ export default function PrettifyText({ containerRef, ...props }: Props) {
         >
             {props.children}
         </p>
-    )
+    );
 }
