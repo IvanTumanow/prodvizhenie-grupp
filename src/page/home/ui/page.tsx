@@ -96,40 +96,36 @@ export default function HomePage() {
                 height={853 / 1.3}
                 id={'bottle'}
                 ref={bottleRef}
-                className="absolute pointer-events-none will-change-transform z-1"
+                className="absolute pointer-events-none will-change-transform z-3"
             />
 
             <div>
                 <Block1
                     title={blocks.HERO_BANNER.title}
                     items={blocks.HERO_BANNER.items}
-                    backgroundColor={'bg-[#E00655]'}
-                    dataId="block"
-                    helperId={0}
+                    backgroundColorClassName={'bg-[#E00655]'}
+                    dataValueId={0}
                 />
 
                 <Block1
                     title={blocks.COMPARE.title}
                     description={blocks.COMPARE.description}
                     items={blocks.COMPARE.items}
-                    dataId="block"
-                    helperId={1}
+                    dataValueId={1}
                 />
 
                 <Block1
                     title={blocks.ABOUT_PRODUCT.title}
                     description={blocks.ABOUT_PRODUCT.description}
                     items={blocks.ABOUT_PRODUCT.items}
-                    dataId="block"
-                    helperId={2}
+                    dataValueId={2}
                 />
 
                 <Block1
                     title={blocks.CONTACT.title}
                     description={blocks.CONTACT.description}
-                    backgroundColor={'bg-accent-foreground'}
-                    dataId="block"
-                    helperId={3}
+                    backgroundColorClassName={'bg-accent-foreground'}
+                    dataValueId={3}
                 />
             </div>
         </div>
