@@ -17,9 +17,14 @@ interface Props extends SectionContentProps {
 export default function Block1({ title, description, items, ...props }: Props) {
     const containerRef = useRef<HTMLElement>(null)
 
-    useScrollAway(containerRef)
+    
 
-    const test: string[] = ['left-[50%] top-[50%]', 'left-[80%] top-[50%]', 'left-[20%] top-[50%]', 'left-[70%] top-[100%]',]
+    const test: string[] = [
+        'left-[50%] top-[65%] -translate-x-1/2 -translate-y-1/2',
+        'left-[80%] top-[50%] -translate-x-1/2 -translate-y-1/2',
+        'left-[20%] top-[50%] -translate-x-1/2 -translate-y-1/2',
+        'left-[70%] top-[100%] -translate-x-1/2 -translate-y-1/2',
+    ];
 
     return (
         <>
@@ -30,13 +35,14 @@ export default function Block1({ title, description, items, ...props }: Props) {
                 backgroundColorClassName={props.backgroundColorClassName}
                 ref={containerRef}
             >
-                <div className="max-w-125 h-full">
+                <div className="max-w-125 h-full z-10 relative">
                     <PrettifyTitle
                         className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
                         containerRef={containerRef}
                     >
                         {title}
                     </PrettifyTitle>
+
                     <PrettifyText
                         className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
                         containerRef={containerRef}

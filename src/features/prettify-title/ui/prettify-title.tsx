@@ -9,7 +9,7 @@ type Props<Tag extends Heading> = {
     containerRef: RefObject<HTMLElement | null>;
 } & Omit<ComponentPropsWithoutRef<Tag>, "as">;
 
-export default function FriendlyTitle<Tag extends Heading = "h2">({
+export default function PrettifyTitle<Tag extends Heading = "h2">({
     as,
     containerRef,
     ...props
@@ -34,6 +34,7 @@ export default function FriendlyTitle<Tag extends Heading = "h2">({
             opacity: 0,
             scale: 0.5,
             y: 15,
+            delay: props.className ? 0.5 : 0,
             rotation: () => gsap.utils.random(-15, 15),
             transformOrigin: "center bottom",
             duration: 0.5,
@@ -50,7 +51,7 @@ export default function FriendlyTitle<Tag extends Heading = "h2">({
             anim.kill();
             split.revert();
         };
-    }, [containerRef]);
+    }, [containerRef, props.className]);
 
     return <Title {...props} ref={ref}>{props.children}</Title>;
 }
