@@ -1,0 +1,1 @@
+export {default as useScrollAway} from './use-scroll-away'

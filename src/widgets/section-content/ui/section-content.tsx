@@ -3,13 +3,15 @@ import { SectionContentProps } from "../model";
 import { cn } from "cn";
 import { useFilledBG } from "../model/use-filled.hooks";
 
-export default function SectionContent({ dataValueId, helperClassName, backgroundColorClassName, ...props }: SectionContentProps) {
+export default function SectionContent({ dataValueId, helperClassName, backgroundColorClassName, ref, ...props }: SectionContentProps) {
     const filledContainer = useRef<HTMLDivElement>(null);
 
     useFilledBG<HTMLDivElement>(filledContainer)
 
     return (
         <section
+            ref={ref}
+
             className={
                 cn('bg-accent',
                     'w-full h-screen p-10 shadow-2xl relative overflow-hidden',

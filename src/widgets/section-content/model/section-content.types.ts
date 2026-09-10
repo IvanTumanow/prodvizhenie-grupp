@@ -1,7 +1,8 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithoutRef, RefObject } from "react";
 
-export interface SectionContentProps extends ComponentPropsWithRef<'section'> {
+export interface SectionContentProps extends ComponentPropsWithoutRef<'section'> {
     dataValueId?: number
     helperClassName?: string
     backgroundColorClassName?: string
+    ref?: RefObject<HTMLElement| null>
 }

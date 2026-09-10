@@ -1,0 +1,1 @@
+export {default as PrettifyText} from './prettify-text'
