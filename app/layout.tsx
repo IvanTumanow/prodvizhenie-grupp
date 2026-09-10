@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { GSAP_RemotePluginsProviders } from "./providers";
 
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic']
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${montserrat.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <main>
-          {children}
-        </main>
+        <GSAP_RemotePluginsProviders>
+          <main>
+            {children}
+          </main>
+        </GSAP_RemotePluginsProviders>
       </body>
     </html>
   );

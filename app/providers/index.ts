@@ -1,0 +1,1 @@
+export {default as GSAP_RemotePluginsProviders} from './gsap-remote-plugins'
