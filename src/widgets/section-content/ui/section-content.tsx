@@ -16,7 +16,7 @@ export default function SectionContent({ dataValueId, helperClassName, backgroun
 
             className={
                 cn('bg-(--color-background)',
-                    'w-full h-screen p-10 shadow-2xl relative overflow-hidden',
+                    'w-full h-screen p-10 shadow-2xl relative overflow-hidden will-change-transform',
                     props?.className)
             }
 
@@ -35,7 +35,7 @@ export default function SectionContent({ dataValueId, helperClassName, backgroun
                 backgroundColorClassName &&
                 <div
                     ref={filledContainer}
-                    className={`absolute left-[-50%] bottom-[-50%] h-full w-0 ${backgroundColorClassName} rounded-[150%] -z-1`}
+                    className={`absolute left-[-50%] bottom-[-50%] h-full w-0 ${backgroundColorClassName} rounded-[150%] -z-1 `}
                 />
             }
         </section>

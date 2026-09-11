@@ -1,8 +1,8 @@
-import { RefObject, useLayoutEffect } from "react";
+import { RefObject, useEffect } from "react";
 import { gsap } from 'gsap'
 
 export function useFilledBG<T extends HTMLElement>(ref: RefObject<T | null>) {
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!ref.current) return;
 
         const fill = gsap.to(ref.current, {

@@ -9,6 +9,7 @@ export default function useScrollAway(refForFloating: RefObject<HTMLElement | nu
             scrollTrigger: {
                 trigger: refForFloating.current,
                 start: "bottom bottom",
+                end: "bottom top",
                 pinSpacing: false,
                 pin: true,
                 scrub: true,
@@ -18,8 +19,8 @@ export default function useScrollAway(refForFloating: RefObject<HTMLElement | nu
         tl.fromTo
             (
                 refForFloating.current,
-                { opacity: 1, scale: 1, filter: "blur(0px)", y: 0 },
-                { opacity: 1, scale: 0.99, filter: "blur(1px)", y: 0 }
+                { opacity: 1, scale: 1, y: 0 },
+                { opacity: 1, scale: 0.99, y: 0 }
             )
 
         return () => {

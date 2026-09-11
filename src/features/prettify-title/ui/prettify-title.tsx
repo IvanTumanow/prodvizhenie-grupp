@@ -42,6 +42,8 @@ function PrettifyTitle<Tag extends Heading = "h2">({
             clearProps: "all",
         });
 
+//TODO: короче вынести scrollTrigger'ы отдельно, давать этим текстам подписываться на timeline, а не создавать свой
+
         return () => {
             anim.scrollTrigger?.kill();
             anim.kill();
