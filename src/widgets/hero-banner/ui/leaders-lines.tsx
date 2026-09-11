@@ -1,12 +1,11 @@
-import { RefObject } from "react";
 import LeaderLine from "./leader-line";
 
 interface Props {
     items: { name: string }[]
-    containerRef: RefObject<HTMLElement | null>
+    tl: gsap.core.Timeline | null
 }
 
-export default function LeadersLines({ items, containerRef }: Props) {
+export default function LeadersLines({ items, tl }: Props) {
     return (
         <>
             {
@@ -20,7 +19,7 @@ export default function LeadersLines({ items, containerRef }: Props) {
                                 <LeaderLine
                                     key={`leader-line-hero-${item.name}`} isReverse={isReverse}
                                     className={isReverse ? 'right-64' : 'left-46'}
-                                    containerRef={containerRef}
+                                    tl={tl}
                                 >
                                     {item.name}
                                 </LeaderLine>

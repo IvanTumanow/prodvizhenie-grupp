@@ -2,6 +2,7 @@ import { PrettifyTitle } from "@/src/features/prettify-title";
 import { SectionContent, SectionContentProps } from "@/src/widgets/section-content";
 import { useRef } from "react";
 import { LeadersLines } from "..";
+import { useRevealTimeline } from "@/src/features/timeline";
 
 interface Props extends SectionContentProps {
     title: string
@@ -11,6 +12,8 @@ interface Props extends SectionContentProps {
 
 export default function HeroBanner({ title, subTitle, items, ...props }: Props) {
     const containerRef = useRef<HTMLElement>(null)
+
+    const tl = useRevealTimeline(containerRef)
 
     return (
         <SectionContent
@@ -25,21 +28,21 @@ export default function HeroBanner({ title, subTitle, items, ...props }: Props) 
                     <PrettifyTitle
                         as='h1'
                         className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
-                        containerRef={containerRef}
+                        tl={tl}
                     >
                         {title.toUpperCase()}
                     </PrettifyTitle>
 
                     <PrettifyTitle
                         className={`text-shadow-[0_20px_0_color-mix(in_srgb,var(--accent)_10%,transparent),0_10px_0_color-mix(in_srgb,var(--accent)_20%,transparent)] text-6xl ${props.backgroundColorClassName ? 'text-accent' : ''}`}
-                        containerRef={containerRef}
+                        tl={tl}
                     >
                         {subTitle.toUpperCase()}
                     </PrettifyTitle>
                 </div>
 
 
-                <LeadersLines items={items} containerRef={containerRef}/>
+                <LeadersLines items={items} tl={tl} />
             </div>
         </SectionContent>
     )

@@ -22,7 +22,7 @@ export default function FloatingText({ floatingItems, containerRef }: Props) {
         trigger: containerRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 3,
+        scrub: 1,
       },
     });
 

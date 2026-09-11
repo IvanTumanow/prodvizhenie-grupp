@@ -1,21 +1,17 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/shadcn/components/ui/card";
 import { PrettifyText } from "@/src/features/prettify-text";
 import { PrettifyTitle } from "@/src/features/prettify-title";
-import { RefObject, useRef } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react"; // Рекомендуемый хук для React от GSAP
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Регистрируем плагин во избежание дублирования в React
-gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   title: string;
   description: string;
-  containerRef: RefObject<HTMLElement | null>;
+  tl: gsap.core.Timeline | null
 }
 
-export default function CardCompare({ title, description, containerRef }: Props) {
+export default function CardCompare({ title, description, tl }: Props) {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
@@ -26,7 +22,7 @@ export default function CardCompare({ title, description, containerRef }: Props)
       {
         opacity: 0,
         y: 50,
-        scale: 0.85, 
+        scale: 0.85,
         rotationZ: -3,
       },
       {
@@ -35,7 +31,7 @@ export default function CardCompare({ title, description, containerRef }: Props)
         scale: 1,
         rotationZ: 0,
         duration: 1.2,
-        ease: "elastic.out(1, 0.6)", 
+        ease: "elastic.out(1, 0.6)",
         scrollTrigger: {
           trigger: cardRef.current,
           start: "top 85%",
@@ -49,12 +45,12 @@ export default function CardCompare({ title, description, containerRef }: Props)
     <Card className="w-full max-w-62.5 pt-6 origin-bottom" ref={cardRef}>
       <CardHeader>
         <CardTitle>
-          <PrettifyTitle containerRef={containerRef} className="text-[#E00655]">
+          <PrettifyTitle tl={tl} className="text-[#E00655]">
             {title}
           </PrettifyTitle>
         </CardTitle>
         <CardDescription>
-          <PrettifyText containerRef={containerRef} className="text-foreground">
+          <PrettifyText tl={tl} className="text-foreground">
             {description}
           </PrettifyText>
         </CardDescription>

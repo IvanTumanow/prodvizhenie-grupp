@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, memo, RefObject, useEffect, useRef } from "react";
+import { ComponentPropsWithoutRef, memo, useEffect, useRef } from "react";
 import { gsap } from 'gsap';
 import SplitText from 'gsap/SplitText';
 
@@ -6,31 +6,25 @@ type Heading = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 type Props<Tag extends Heading> = {
     as?: Tag;
-    containerRef: RefObject<HTMLElement | null>;
+    tl: gsap.core.Timeline | null
 } & Omit<ComponentPropsWithoutRef<Tag>, "as">;
 
 function PrettifyTitle<Tag extends Heading = "h2">({
     as,
-    containerRef,
+    tl,
     ...props
 }: Props<Tag>) {
     const Title = as || 'h2';
     const ref = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
-        if (!containerRef.current || !ref.current) return;
+        if (!ref.current || !tl) return;
         const split = SplitText.create(ref.current, {
             type: "chars, words",
             charsClass: "inline-block"
         });
 
         const anim = gsap.from(split.chars, {
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top bottom-=85%",
-                end: "top center",
-                toggleActions: "play none none reverse",
-            },
             opacity: 0,
             scale: 0.5,
             y: 15,
@@ -42,14 +36,14 @@ function PrettifyTitle<Tag extends Heading = "h2">({
             clearProps: "all",
         });
 
-//TODO: короче вынести scrollTrigger'ы отдельно, давать этим текстам подписываться на timeline, а не создавать свой
+        tl.add(anim, 0.5)
 
         return () => {
             anim.scrollTrigger?.kill();
             anim.kill();
             split.revert();
         };
-    }, [containerRef]);
+    }, [tl]);
 
     return <Title {...props} ref={ref}>{props.children}</Title>;
 }

@@ -35,7 +35,7 @@ export default function SectionContent({ dataValueId, helperClassName, backgroun
                 backgroundColorClassName &&
                 <div
                     ref={filledContainer}
-                    className={`absolute left-[-50%] bottom-[-50%] h-full w-0 ${backgroundColorClassName} rounded-[150%] -z-1 `}
+                    className={`absolute left-[-50%] bottom-[-50%] h-full w-full scale-0 ${backgroundColorClassName} rounded-[150%] -z-1 transform-will-change`}
                 />
             }
         </section>

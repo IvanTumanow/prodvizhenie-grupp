@@ -1,4 +1,3 @@
-import { Card, CardDescription, CardHeader, CardTitle } from "@/shadcn/components/ui/card";
 import { PrettifyText } from "@/src/features/prettify-text";
 import { PrettifyTitle } from "@/src/features/prettify-title";
 import { SectionContent, SectionContentProps } from "@/src/widgets/section-content";
@@ -6,6 +5,7 @@ import { useRef } from "react";
 import Star from "./star";
 import CardsCompares from "./cards-compares";
 import FloatingText from "./floating-text";
+import { useRevealTimeline } from "@/src/features/timeline";
 
 interface Props extends SectionContentProps {
     title: string
@@ -17,6 +17,8 @@ interface Props extends SectionContentProps {
 
 export default function CompareBlock({ title, subTitle, description, floatingItems, items, ...props }: Props) {
     const containerRef = useRef<HTMLElement>(null)
+
+    const tl = useRevealTimeline(containerRef)
 
     return (
         <SectionContent
@@ -31,33 +33,33 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
                     <div className="flex flex-col gap-4.5 max-w-[75%]">
                         <PrettifyTitle
                             className={'text-[#E00655]'}
-                            containerRef={containerRef}
+                            tl={tl}
                             as="h6"
                         >
                             {subTitle.toUpperCase()}
                         </PrettifyTitle>
 
                         <PrettifyTitle
-                            containerRef={containerRef}
+                            tl={tl}
                         >
                             {title}
                         </PrettifyTitle>
 
                         <PrettifyText
-                            containerRef={containerRef}
+                            tl={tl}
                         >
                             {description}
                         </PrettifyText>
                     </div>
 
-                    <CardsCompares items={items} containerRef={containerRef}/>
+                    <CardsCompares items={items} tl={tl}/>
                 </div>
 
                 <div className="mx-5">
                     <Star />
                 </div>
 
-                <FloatingText containerRef={containerRef} floatingItems={floatingItems}/>
+                <FloatingText containerRef={containerRef} floatingItems={floatingItems} />
             </div>
         </SectionContent>
     )

@@ -1,12 +1,12 @@
-import { RefObject } from "react";
 import CardCompare from "./card-compare";
+import {gsap} from 'gsap'
 
 interface Props {
     items: { name: string, description: string }[]
-    containerRef: RefObject<HTMLElement | null>;
+    tl: gsap.core.Timeline | null
 }
 
-export default function CardsCompares({ items, containerRef }: Props) {
+export default function CardsCompares({ items, tl }: Props) {
     return (
         <>
             {
@@ -16,7 +16,7 @@ export default function CardsCompares({ items, containerRef }: Props) {
                         items.map(item => (
                             <CardCompare
                                 key={`card-compare-${item.name}`}
-                                containerRef={containerRef}
+                                tl={tl}
                                 title={item.name}
                                 description={item.description}
                             />

@@ -4,9 +4,9 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/shadcn/component
 import { useRef } from "react";
 
 import { SectionContent, SectionContentProps } from "@/src/widgets/section-content";
-import { useScrollAway } from "../../scroll-away";
 import { PrettifyTitle } from "@/src/features/prettify-title";
 import { PrettifyText } from "@/src/features/prettify-text";
+import { useRevealTimeline } from "@/src/features/timeline";
 
 interface Props extends SectionContentProps {
     title: string
@@ -16,8 +16,9 @@ interface Props extends SectionContentProps {
 
 export default function Block1({ title, description, items, ...props }: Props) {
     const containerRef = useRef<HTMLElement>(null)
+    const tl = useRevealTimeline(containerRef)
 
-    
+
 
     const test: string[] = [
         'left-[50%] top-[65%] -translate-x-1/2 -translate-y-1/2',
@@ -38,14 +39,14 @@ export default function Block1({ title, description, items, ...props }: Props) {
                 <div className="h-full z-10 relative">
                     <PrettifyTitle
                         className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
-                        containerRef={containerRef}
+                        tl={tl}
                     >
                         {title}
                     </PrettifyTitle>
 
                     <PrettifyText
                         className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
-                        containerRef={containerRef}
+                        tl={tl}
                     >
                         {description}
                     </PrettifyText>

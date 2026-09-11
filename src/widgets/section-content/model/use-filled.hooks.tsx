@@ -5,16 +5,18 @@ export function useFilledBG<T extends HTMLElement>(ref: RefObject<T | null>) {
     useEffect(() => {
         if (!ref.current) return;
 
+        gsap.set(ref.current, { scale: 0 })
+
         const fill = gsap.to(ref.current, {
-            duration: 1.5,
+            duration: 2.5,
             ease: "power2.out",
-            width: "200%",
-            height: '200%',
+            scale: 5,
             scrollTrigger: {
-                trigger: ref.current,
-                start: "top bottom",
+                trigger: ref.current.parentElement,
+                start: "top bottom-=70%",
                 end: "top center",
                 scrub: false,
+                toggleActions: "play none none reverse",
             }
         });
 

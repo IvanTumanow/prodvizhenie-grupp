@@ -1,15 +1,15 @@
 import { PrettifyText } from "@/src/features/prettify-text";
-import { ReactNode, RefObject, useLayoutEffect, useRef } from "react";
+import { ReactNode, useLayoutEffect, useRef } from "react";
 import { gsap } from 'gsap';
 
 interface Props {
     children: ReactNode;
     isReverse?: boolean;
     className?: string;
-    containerRef: RefObject<HTMLElement | null>;
+    tl: gsap.core.Timeline | null
 }
 
-export default function LeaderLine({ children, isReverse, containerRef, className }: Props) {
+export default function LeaderLine({ children, isReverse, tl, className }: Props) {
     const width = 150 + (typeof children === 'string' ? children.length * 10 : 38);
     const ref = useRef<HTMLSpanElement>(null);
     const svgRef = useRef<HTMLElement>(null);
@@ -19,12 +19,8 @@ export default function LeaderLine({ children, isReverse, containerRef, classNam
     const lineRef = useRef<SVGPathElement>(null);
 
     useLayoutEffect(() => {
-        if (!svgRef.current || !lineRef.current) return;
+        if (!svgRef.current || !lineRef.current || !tl) return;
         const lineLength = lineRef.current.getTotalLength();
-
-        const tl = gsap.timeline({
-            defaults: { ease: "power2.out", duration: 0.6 }
-        });
 
         gsap.set(lineRef.current, {
             strokeDasharray: lineLength,
@@ -38,20 +34,22 @@ export default function LeaderLine({ children, isReverse, containerRef, classNam
             scale: 0
         });
 
-        tl.to(bigCircleRef.current, { scale: 1, duration: 0.4 })
-            .to(lineRef.current, { strokeDashoffset: 0, duration: 0.4 })
-            .to(smallCircleRef.current, { scale: 1, duration: 0.3 });
+        const anim1 = gsap.to(bigCircleRef.current, { scale: 1, duration: 0.4 })
+        const anim2 = gsap.to(lineRef.current, { strokeDashoffset: 0, duration: 0.4 })
+        const anim3 = gsap.to(smallCircleRef.current, { scale: 1, duration: 0.3 });
+
+        tl.add([anim1, anim2, anim3])
 
         return () => {
             tl.kill();
         };
-    }, [width]);
+    }, [tl, width]);
 
     return (
         <span className={`relative w-fit ${className}`} ref={ref}>
             <PrettifyText
-                containerRef={containerRef}
                 className={`text-shadow-xs text-accent absolute -top-4 ${isReverse ? 'left-0' : 'right-0'}`}
+                tl={tl}
             >
                 {children}
             </PrettifyText>
