@@ -18,7 +18,7 @@ export default function HeroBanner({ title, subTitle, items, ...props }: Props) 
     return (
         <SectionContent
             {...props}
-            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[50%] top-[65%] -translate-x-1/2 -translate-y-1/2' : ''} bg-red-800 w-1 h-1`}
+            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[50%] top-[65%] -translate-x-1/2 -translate-y-1/2' : ''}`}
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}

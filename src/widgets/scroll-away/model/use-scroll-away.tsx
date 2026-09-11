@@ -1,5 +1,8 @@
 import { RefObject, useLayoutEffect } from "react";
-import { gsap } from 'gsap'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function useScrollAway(refForFloating: RefObject<HTMLElement | null>) {
     useLayoutEffect(() => {
@@ -12,20 +15,20 @@ export default function useScrollAway(refForFloating: RefObject<HTMLElement | nu
                 end: "bottom top",
                 pinSpacing: false,
                 pin: true,
-                scrub: true,
+                scrub: 1,
             },
-        })
+        });
 
-        tl.fromTo
-            (
-                refForFloating.current,
-                { opacity: 1, scale: 1, y: 0 },
-                { opacity: 1, scale: 0.99, y: 0 }
-            )
+        tl.to(refForFloating.current, {
+            yPercent: -10,
+            scaleY: 1.01,
+            rotation: 0.5,
+            ease: "power1.out", 
+        });
 
         return () => {
             tl.scrollTrigger?.kill();
             tl.kill();
         };
-    }, [refForFloating])
+    }, [refForFloating]);
 }

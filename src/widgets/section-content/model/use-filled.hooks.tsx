@@ -13,7 +13,7 @@ export function useFilledBG<T extends HTMLElement>(ref: RefObject<T | null>) {
             scale: 5,
             scrollTrigger: {
                 trigger: ref.current.parentElement,
-                start: "top bottom-=70%",
+                start: "top bottom-=10%",
                 end: "top center",
                 scrub: false,
                 toggleActions: "play none none reverse",

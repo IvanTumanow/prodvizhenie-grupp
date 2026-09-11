@@ -14,8 +14,8 @@ export function useRevealTimeline(
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: opts?.start ?? "top bottom-=70%",
-                end: opts?.end ?? "top center",
-                toggleActions: "play none none reverse",
+                end: opts?.end ?? "bottom top+=50%",
+                toggleActions: "play reverse play reverse",
                 invalidateOnRefresh: true,
             },
             defaults: { ease: "back.out(1.2)" },

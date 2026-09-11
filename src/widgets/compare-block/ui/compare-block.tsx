@@ -3,7 +3,7 @@ import { PrettifyTitle } from "@/src/features/prettify-title";
 import { SectionContent, SectionContentProps } from "@/src/widgets/section-content";
 import { useRef } from "react";
 import Star from "./star";
-import CardsCompares from "./cards-compares";
+import { CardsLists } from '@/src/features/card'
 import FloatingText from "./floating-text";
 import { useRevealTimeline } from "@/src/features/timeline";
 
@@ -23,7 +23,7 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
     return (
         <SectionContent
             {...props}
-            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[80%] top-[50%] -translate-x-1/2 -translate-y-1/2' : ''} bg-red-800 w-1 h-1`}
+            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[80%] top-[50%] -translate-x-1/2 -translate-y-1/2' : ''}`}
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
@@ -52,11 +52,11 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
                         </PrettifyText>
                     </div>
 
-                    <CardsCompares items={items} tl={tl}/>
+                    <CardsLists items={items} tl={tl}/>
                 </div>
 
                 <div className="mx-5">
-                    <Star />
+                    <Star tl={tl}/>
                 </div>
 
                 <FloatingText containerRef={containerRef} floatingItems={floatingItems} />

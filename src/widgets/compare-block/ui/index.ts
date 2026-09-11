@@ -1,5 +1,3 @@
 export {default as CompareBlock} from './compare-block'
 export {default as Star} from './star'
-export {default as CardsCompares} from './cards-compares'
-export {default as CardCompare} from './card-compare'
 export {default as FloatingText} from './floating-text'

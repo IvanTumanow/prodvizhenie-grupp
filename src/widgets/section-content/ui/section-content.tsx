@@ -13,18 +13,18 @@ export default function SectionContent({ dataValueId, helperClassName, backgroun
     return (
         <section
             ref={ref}
-
-            className={
-                cn('bg-(--color-background)',
-                    'w-full h-screen p-10 shadow-2xl relative overflow-hidden will-change-transform',
-                    props?.className)
-            }
-
             {...props}
+            className={cn(
+                'bg-(--color-background)',
+                'w-full h-screen p-10 shadow-2xl relative overflow-hidden will-change-transform',
+                props?.className
+            )}
+
+
         >
             {
                 typeof dataValueId === 'number' &&
-                <span data-id-value={dataValueId} className={`absolute bg-red-800 w-1 h-1 ${helperClassName}`} />
+                <span data-id-value={dataValueId} className={`absolute w-1 h-1 ${helperClassName}`} />
             }
 
             <div className="flex flex-column justify-center items-center h-full rounded-xl">

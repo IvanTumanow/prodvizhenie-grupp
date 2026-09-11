@@ -1,23 +1,23 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/shadcn/components/ui/card";
 import { PrettifyText } from "@/src/features/prettify-text";
 import { PrettifyTitle } from "@/src/features/prettify-title";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react"; // Рекомендуемый хук для React от GSAP
+import { ComponentPropsWithoutRef, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { cn } from "cn";
 
-interface Props {
+interface Props extends ComponentPropsWithoutRef<'div'> {
   title: string;
   description: string;
   tl: gsap.core.Timeline | null
 }
 
-export default function CardCompare({ title, description, tl }: Props) {
+export default function CardCompare({ title, description, tl, ...props }: Props) {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
-  useGSAP(() => {
-    if (!cardRef.current) return;
+  useEffect(() => {
+    if (!cardRef.current || !tl) return;
 
-    gsap.fromTo(
+    const anim = gsap.fromTo(
       cardRef.current,
       {
         opacity: 0,
@@ -32,17 +32,14 @@ export default function CardCompare({ title, description, tl }: Props) {
         rotationZ: 0,
         duration: 1.2,
         ease: "elastic.out(1, 0.6)",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
       }
     );
-  }, { scope: cardRef });
+
+    tl.add(anim, 0)
+  }, [tl]);
 
   return (
-    <Card className="w-full max-w-62.5 pt-6 origin-bottom" ref={cardRef}>
+    <Card className={cn("w-full pt-6 origin-bottom", props.className)} ref={cardRef} {...props}>
       <CardHeader>
         <CardTitle>
           <PrettifyTitle tl={tl} className="text-[#E00655]">

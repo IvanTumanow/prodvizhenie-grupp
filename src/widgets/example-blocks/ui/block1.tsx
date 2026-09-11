@@ -24,14 +24,14 @@ export default function Block1({ title, description, items, ...props }: Props) {
         'left-[50%] top-[65%] -translate-x-1/2 -translate-y-1/2',
         'left-[80%] top-[50%] -translate-x-1/2 -translate-y-1/2',
         'left-[20%] top-[50%] -translate-x-1/2 -translate-y-1/2',
-        'left-[70%] top-[100%] -translate-x-1/2 -translate-y-1/2',
+        'left-[80%] top-[50%] -translate-x-1/2 -translate-y-1/2',
     ];
 
     return (
         <>
             <SectionContent
                 {...props}
-                helperClassName={`absolute ${typeof props.dataValueId === 'number' ? test[props.dataValueId] : ''} bg-red-800 w-1 h-1`}
+                helperClassName={`absolute ${typeof props.dataValueId === 'number' ? test[props.dataValueId] : ''}`}
                 dataValueId={props.dataValueId}
                 backgroundColorClassName={props.backgroundColorClassName}
                 ref={containerRef}

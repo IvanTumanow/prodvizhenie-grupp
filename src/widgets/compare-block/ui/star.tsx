@@ -1,10 +1,43 @@
-export default function Star() {
-    return (
-        <svg width="724" height="652" viewBox="0 0 724 652" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path opacity="0.04"
-                d="M349.455 -3.34082e-05L431.835 115.3L573.023 53.9042L560.908 189.871L715.888 211.705L613.905 316.405L723.481 413.129L570.584 446.569L592.901 581.238L447.492 530.645L374.026 651.82L291.646 536.52L150.458 597.916L162.573 461.949L7.59281 440.115L109.576 335.416L3.80864e-05 238.691L152.897 205.251L130.58 70.5823L275.989 121.175L349.455 -3.34082e-05Z"
-                fill="#5E636F" />
-        </svg>
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 
-    )
+interface Props {
+    tl: gsap.core.Timeline | null;
+}
+
+export default function Star({ tl }: Props) {
+    const starRef = useRef<SVGPathElement>(null);
+
+    useLayoutEffect(() => {
+        if (!tl || !starRef.current) return;
+
+        const smoothJellyAnimation = gsap.fromTo(
+            starRef.current,
+            {
+                scale: 0,
+                rotation: -25,
+                opacity: 0,
+            },
+            {
+                scale: 1,
+                rotation: 0,
+                opacity: 0.04,
+                duration: 2.5,
+                ease: "elastic.out(1,.8)",
+            }
+        );
+
+        tl.add(smoothJellyAnimation, 0);
+    }, [tl]);
+
+    return (
+        <svg width="724" height="652" viewBox="0 0 724 652" fill="none" xmlns="http://w3.org">
+            <path
+                ref={starRef}
+                d="M349.455 -3.34082e-05L431.835 115.3L573.023 53.9042L560.908 189.871L715.888 211.705L613.905 316.405L723.481 413.129L570.584 446.569L592.901 581.238L447.492 530.645L374.026 651.82L291.646 536.52L150.458 597.916L162.573 461.949L7.59281 440.115L109.576 335.416L3.80864e-05 238.691L152.897 205.251L130.58 70.5823L275.989 121.175L349.455 -3.34082e-05Z"
+                fill="#5E636F"
+                style={{ opacity: 0 }}
+            />
+        </svg>
+    );
 }
