@@ -4,13 +4,13 @@
 import { useRef } from "react";
 
 import { BLOCKS_INFO } from "@/src/shared/api/app-info.api";
-import Block1 from "@/src/widgets/example-blocks/ui/block1";
 
 import { HeroBanner } from '@/src/widgets/hero-banner';
 import { CompareBlock } from '@/src/widgets/compare-block';
 import { AboutProductBlock } from '@/src/widgets/about-product';
 import { Bottle } from '@/src/widgets/bottle';
 import { AboutFundBlock } from "@/src/widgets/about-fund";
+import { ContactBlock } from "@/src/widgets/contact-block";
 
 
 export default function HomePage() {
@@ -26,7 +26,7 @@ export default function HomePage() {
             <Bottle containerRef={containerRef} />
 
             <div ref={containerRef}>
-                <HeroBanner
+                {/* <HeroBanner
                     {...blocks.HERO_BANNER}
                     backgroundColorClassName={'bg-[#E00655]'}
                     dataValueId={0}
@@ -40,16 +40,13 @@ export default function HomePage() {
                 <AboutProductBlock
                     {...blocks.ABOUT_PRODUCT}
                     dataValueId={2}
-                />
+                /> */}
 
-                <Block1
-                    title={blocks.CONTACT.title}
-                    description={blocks.CONTACT.description}
+                <ContactBlock
+                    {...blocks.CONTACT}
                     backgroundColorClassName={'bg-accent-foreground'}
                     dataValueId={3}
                 />
-
-
             </div>
 
             <AboutFundBlock

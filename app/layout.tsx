@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: 'Описание приложения для "Продвижение групп"',
 };
 
+// TODO: сделать хэдер
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -23,7 +25,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <GSAP_RemotePluginsProviders>
           <Link href="/">Home</Link>
-          <Link href="/policy">Policy</Link>
+          <Link href="/privacy-policy">Policy</Link>
+          <Link href="/personal-data-consent">Personal data consent</Link>
 
           <main>
             {children}

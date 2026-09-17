@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import bottlePath from '@/src/widgets/example-blocks/ui/bottle.png'
+import bottlePath from '@/public/bottle.png'
 import { RefObject, useEffect, useRef } from 'react';
 
 import { gsap } from "gsap";

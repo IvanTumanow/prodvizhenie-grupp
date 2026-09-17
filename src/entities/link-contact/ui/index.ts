@@ -1,0 +1,1 @@
+export {default as LinkContact} from './link-contack'

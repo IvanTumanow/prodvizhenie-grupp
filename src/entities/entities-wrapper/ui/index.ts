@@ -1,0 +1,1 @@
+export {default as EntitiesWrapper} from './entities-wrapper'
