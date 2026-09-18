@@ -3,7 +3,6 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { GSAP_RemotePluginsProviders } from "./providers";
 import { Footer } from "@/src/widgets/footer";
-import Link from "next/link";
 import { Header } from "@/src/widgets/header";
 
 const montserrat = Montserrat({

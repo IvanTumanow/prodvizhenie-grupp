@@ -41,15 +41,11 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
                             {subTitle.toUpperCase()}
                         </PrettifyTitle>
 
-                        <PrettifyTitle
-                            tl={tl}
-                        >
+                        <PrettifyTitle tl={tl}>
                             {title}
                         </PrettifyTitle>
 
-                        <PrettifyText
-                            tl={tl}
-                        >
+                        <PrettifyText tl={tl}>
                             {description}
                         </PrettifyText>
                     </div>
