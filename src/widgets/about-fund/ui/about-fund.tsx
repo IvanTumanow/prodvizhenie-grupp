@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { SectionContent, SectionContentProps } from "@/src/widgets/section-content";
 import { PrettifyText } from "@/src/features/prettify-text";
 import { LogoFund } from "..";
+import { ROUTES } from "@/src/shared/config";
 
 export default function AboutFundBlock({ ...props }: SectionContentProps) {
     const containerRef = useRef<HTMLElement>(null)
@@ -13,10 +14,11 @@ export default function AboutFundBlock({ ...props }: SectionContentProps) {
             {...props}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
+            id={ROUTES.ABOUT_FUND.slug.replace('#', '').trim()}
         >
 
             <div className="flex flex-col items-center justify-around w-full h-full z-10 relative">
-                <LogoFund tl={tl}/>
+                <LogoFund tl={tl} />
 
                 <PrettifyText
                     className={'text-center'}

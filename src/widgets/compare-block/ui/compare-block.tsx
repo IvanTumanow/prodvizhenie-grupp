@@ -6,6 +6,7 @@ import Star from "./star";
 import { CardsLists } from '@/src/features/card'
 import FloatingText from "./floating-text";
 import { useRevealTimeline } from "@/src/features/timeline";
+import { ROUTES } from "@/src/shared/config";
 
 interface Props extends SectionContentProps {
     title: string
@@ -27,6 +28,7 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
+            id={ROUTES.USE.slug.replace('#', '').trim()}
         >
             <div className="h-full z-10 relative flex flex-row justify-center items-center">
                 <div className="flex flex-col gap-12.5 h-full">
@@ -52,11 +54,11 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
                         </PrettifyText>
                     </div>
 
-                    <CardsLists items={items} tl={tl}/>
+                    <CardsLists items={items} tl={tl} />
                 </div>
 
                 <div className="mx-5">
-                    <Star tl={tl}/>
+                    <Star tl={tl} />
                 </div>
 
                 <FloatingText containerRef={containerRef} floatingItems={floatingItems} />

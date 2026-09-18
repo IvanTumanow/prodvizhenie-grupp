@@ -3,6 +3,7 @@ import { SectionContent, SectionContentProps } from "@/src/widgets/section-conte
 import { useRef } from "react";
 import { LeadersLines } from "..";
 import { useRevealTimeline } from "@/src/features/timeline";
+import { ROUTES } from "@/src/shared/config";
 
 interface Props extends SectionContentProps {
     title: string
@@ -22,6 +23,7 @@ export default function HeroBanner({ title, subTitle, items, ...props }: Props) 
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
+            id={ROUTES.HOME.slug.replace('#', '').trim()}
         >
             <div className="w-full h-full z-10 relative">
                 <div className="flex flex-col justify-center items-center my-12.5">

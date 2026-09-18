@@ -91,7 +91,6 @@ export default function Bottle({ containerRef }: Props) {
                     else if (isSmallTablet) coef = 1;
                     else if (isMobile) coef = 0.8;
 
-                    console.log('coef', coef)
                     const tl = buildTimeline(coef);
 
                     return () => {

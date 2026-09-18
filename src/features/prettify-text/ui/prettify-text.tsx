@@ -17,19 +17,26 @@ function PrettifyText({ tl, ...props }: Props) {
             linesClass: 'block'
         });
 
-        const anim = gsap.from(split.words, {
+        gsap.set(split.words, {
             opacity: 0,
             y: 20,
             rotation: () => gsap.utils.random(-4, 4),
+        });
+
+        const anim = gsap.to(split.words, {
+            opacity: 1,
+            y: 0,
+            rotation: 0,
             duration: 0.6,
             stagger: {
                 each: 0.03,
                 from: "start",
             },
             ease: "back.out(1.2)",
+            clearProps: "all",
         });
 
-        tl.add(anim, props.className ? 0.4 : 0.2)
+        tl.add(anim, props.className ? 0.4 : 0.2);
 
         return () => {
             anim.scrollTrigger?.kill();

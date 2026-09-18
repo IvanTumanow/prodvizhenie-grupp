@@ -5,6 +5,7 @@ import { CardsLists } from "@/src/features/card";
 import { PrettifyText } from "@/src/features/prettify-text";
 import { PrettifyTitle } from "@/src/features/prettify-title";
 import { Circles } from "..";
+import { ROUTES } from "@/src/shared/config";
 
 interface Props extends SectionContentProps {
     title: string
@@ -23,10 +24,11 @@ export default function AboutProductBlock({ title, description, items, ...props 
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
+            id={ROUTES.ABOUT_PRODUCT.slug.replace('#', '').trim()}
         >
 
             <div className="flex flex-row w-full h-full z-10 relative">
-                <Circles tl={tl}/>
+                <Circles tl={tl} />
 
                 <div className="flex flex-col gap-12.5 w-[50%]">
                     <div className="flex flex-col gap-4">

@@ -21,22 +21,29 @@ function PrettifyTitle<Tag extends Heading = "h2">({
         if (!ref.current || !tl) return;
         const split = SplitText.create(ref.current, {
             type: "chars, words",
-            charsClass: "inline-block"
+            charsClass: "inline-block",
         });
 
-        const anim = gsap.from(split.chars, {
+        gsap.set(split.chars, {
             opacity: 0,
             scale: 0.5,
             y: 15,
-            rotation: 'random(-15, 15)',
+            rotation: () => gsap.utils.random(-15, 15),
             transformOrigin: "center bottom",
+        });
+
+        const anim = gsap.to(split.chars, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            rotation: 0,
             duration: 0.5,
             stagger: 0.02,
             ease: "elastic.out(1, 0.6)",
             clearProps: "all",
         });
 
-        tl.add(anim, 0.5)
+        tl.add(anim, 0.5);
 
         return () => {
             anim.scrollTrigger?.kill();

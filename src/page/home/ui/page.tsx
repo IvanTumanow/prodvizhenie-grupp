@@ -26,7 +26,7 @@ export default function HomePage() {
             <Bottle containerRef={containerRef} />
 
             <div ref={containerRef}>
-                {/* <HeroBanner
+                <HeroBanner
                     {...blocks.HERO_BANNER}
                     backgroundColorClassName={'bg-[#E00655]'}
                     dataValueId={0}
@@ -40,7 +40,7 @@ export default function HomePage() {
                 <AboutProductBlock
                     {...blocks.ABOUT_PRODUCT}
                     dataValueId={2}
-                /> */}
+                />
 
                 <ContactBlock
                     {...blocks.CONTACT}

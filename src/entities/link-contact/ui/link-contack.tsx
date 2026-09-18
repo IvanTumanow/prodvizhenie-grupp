@@ -12,9 +12,10 @@ interface Props extends LinkType {
     typeContact: TypeContact
     value: string
     tl?: gsap.core.Timeline | null
+    wrapperProps?: ComponentPropsWithoutRef<'div'>
 }
 
-export default function LinkContact({ typeContact, tl, value, ...props }: Props) {
+export default function LinkContact({ typeContact, tl, value, wrapperProps, ...props }: Props) {
     const prefix: Record<TypeContact, string> = {
         phone: 'tel:',
         mail: 'mailto:'
@@ -23,7 +24,7 @@ export default function LinkContact({ typeContact, tl, value, ...props }: Props)
     const formattedValue = typeContact === 'phone' ? value.replace(/[^\d+]/g, '') : value
 
     return (
-        <EntitiesWrapper tl={tl}>
+        <EntitiesWrapper {...wrapperProps} tl={tl}>
             <Link
                 {...props}
                 href={`${prefix[typeContact]}${formattedValue}`}

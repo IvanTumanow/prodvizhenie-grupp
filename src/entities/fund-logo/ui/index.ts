@@ -1,0 +1,1 @@
+export {default as LogoFund} from './fund-logo'

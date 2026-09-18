@@ -4,11 +4,12 @@ import { EntitiesWrapper } from "@/src/entities/entities-wrapper"
 
 interface Props extends ComponentPropsWithoutRef<'button'> {
     tl?: gsap.core.Timeline | null
+    wrapperProps?: ComponentPropsWithoutRef<'div'>
 }
 
 export default function Button(props: Props) {
     return (
-        <EntitiesWrapper tl={props?.tl}>
+        <EntitiesWrapper {...props.wrapperProps} tl={props?.tl}>
             <ShadcnButton
                 {...props}
                 variant={'ghost'}

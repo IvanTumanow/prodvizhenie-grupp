@@ -4,6 +4,7 @@ import "./globals.css";
 import { GSAP_RemotePluginsProviders } from "./providers";
 import { Footer } from "@/src/widgets/footer";
 import Link from "next/link";
+import { Header } from "@/src/widgets/header";
 
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic']
@@ -14,8 +15,6 @@ export const metadata: Metadata = {
   description: 'Описание приложения для "Продвижение групп"',
 };
 
-// TODO: сделать хэдер
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -24,9 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <GSAP_RemotePluginsProviders>
-          <Link href="/">Home</Link>
-          <Link href="/privacy-policy">Policy</Link>
-          <Link href="/personal-data-consent">Personal data consent</Link>
+          <Header/>
 
           <main>
             {children}

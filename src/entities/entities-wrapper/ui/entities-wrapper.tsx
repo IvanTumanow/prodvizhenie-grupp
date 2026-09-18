@@ -18,12 +18,10 @@ export default function EntitiesWrapper({ tl, ...props }: Props) {
                 {
                     scale: 0,
                     opacity: 0,
-                    y: 10
                 },
                 {
                     scale: 1,
                     opacity: 1,
-                    y: 0,
                     ease: "back.out(1.7)",
                     duration: 0.6
                 },
@@ -41,14 +39,12 @@ export default function EntitiesWrapper({ tl, ...props }: Props) {
         gsap.to(wrapperRef.current, {
             scaleX: 1.05,
             scaleY: 0.95,
-            y: 1,
             duration: 0.15,
             ease: "power1.out",
             onComplete: () => {
                 gsap.to(wrapperRef.current, {
                     scaleX: 1,
                     scaleY: 1,
-                    y: -5,
                     duration: 0.6,
                     ease: "elastic.out(1.2, 0.4)"
                 });
@@ -64,14 +60,12 @@ export default function EntitiesWrapper({ tl, ...props }: Props) {
         gsap.to(wrapperRef.current, {
             scaleX: 0.95,
             scaleY: 1.05,
-            y: 0,
             duration: 0.3,
             ease: "power1.out",
             onComplete: () => {
                 gsap.to(wrapperRef.current, {
                     scaleX: 1,
                     scaleY: 1,
-                    y: 0,
                     duration: 0.5,
                     ease: "elastic.out(1, 0.3)"
                 });

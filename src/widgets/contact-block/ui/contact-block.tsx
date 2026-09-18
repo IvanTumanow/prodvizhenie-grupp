@@ -1,4 +1,3 @@
-import { Checkbox } from "@/shadcn/components/ui/checkbox";
 import { Field, FieldLabel } from "@/shadcn/components/ui/field";
 
 import { Button } from "@/src/entities/button/ui";
@@ -7,17 +6,58 @@ import { LinkContact } from "@/src/entities/link-contact";
 import { PrettifyText } from "@/src/features/prettify-text";
 import { PrettifyTitle } from "@/src/features/prettify-title";
 import { useRevealTimeline } from "@/src/features/timeline";
+import { ROUTES } from "@/src/shared/config";
 import { SectionContent, SectionContentProps } from '@/src/widgets/section-content';
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 interface Props extends SectionContentProps {
     title: string
     description: string
 }
 
+const phoneRegex = /^(7|8)[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+
+const formSchema = z.object({
+    fullName: z.string().min(3, 'Минимальная длина 3'),
+    phoneOrEmail: z.string()
+        .trim()
+        .refine(
+            (value) => {
+                const isEmail = z.email().safeParse(value).success;
+                const isPhone = phoneRegex.test(value);
+                return isEmail || isPhone;
+            },
+            {
+                message: "Введите корректный email или российский номер телефона",
+            }
+        ),
+    consentIsAccess: z.boolean().refine((val) => val === true, {
+        message: "Необходимо согласиться с политикой конфиденциальности",
+    }),
+});
+
+type IForm = z.infer<typeof formSchema>
+
 export default function ContactBlock({ title, description, ...props }: Props) {
     const containerRef = useRef<HTMLElement>(null)
     const tl = useRevealTimeline(containerRef)
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isSubmitting },
+    } = useForm<IForm>({
+        resolver: zodResolver(formSchema),
+    });
+
+    const onSubmit = async (data: IForm) => {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        reset()
+    };
 
     return (
         <>
@@ -27,8 +67,12 @@ export default function ContactBlock({ title, description, ...props }: Props) {
                 dataValueId={props.dataValueId}
                 backgroundColorClassName={props.backgroundColorClassName}
                 ref={containerRef}
+                id={ROUTES.CONTACTS.slug.replace('#', '').trim()}
             >
-                <form className="h-full w-full z-10 relative flex flex-col gap-40">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="h-full w-full z-10 relative flex flex-col gap-40"
+                >
                     <div className="flex flex-col gap-12.5">
                         <div className="flex flex-col gap-2.5">
                             <PrettifyTitle
@@ -71,42 +115,46 @@ export default function ContactBlock({ title, description, ...props }: Props) {
                         </div>
 
                         <div className="flex flex-row gap-8 w-fit">
-                            <Field orientation="horizontal">
+                            <Field orientation="horizontal" className="flex flex-col gap-2 items-start">
                                 <Input
                                     tl={tl}
+                                    {...register('fullName')}
                                     placeholder="Как вас зовут? ФИО"
                                 />
+                                {errors.fullName && <p className="text-destructive text-nowrap">{errors.fullName.message}</p>}
                             </Field>
 
-                            <Field orientation="horizontal">
+                            <Field orientation="horizontal" className="flex flex-col gap-2 items-start">
                                 <Input
                                     tl={tl}
+                                    {...register('phoneOrEmail')}
                                     placeholder="Ваша почта или телефон"
                                 />
+
+                                {errors.phoneOrEmail && <p className="text-destructive text-nowrap">{errors.phoneOrEmail.message}</p>}
                             </Field>
                         </div>
 
                         <div className="flex flex-col gap-2.5">
-                            <Field orientation="horizontal">
-                                <Checkbox
-                                    id="checkout-7j9-same-as-shipping-wgm"
-                                    className={'dark'}
-                                />
-                                <FieldLabel
-                                    htmlFor="checkout-7j9-same-as-shipping-wgm"
-                                    className="font-normal"
-                                >
-                                    <PrettifyText tl={tl}>
-                                        Я ознакомлен(а) с Политикой конфиденциальности и даю согласие на обработку моих персональных данных
-                                    </PrettifyText>
-                                </FieldLabel>
-                            </Field>
+                            <div>
+                                <Field orientation="horizontal" >
+                                    <input type={'checkbox'} {...register('consentIsAccess')} />
+                                    <FieldLabel
+                                        htmlFor="checkout-7j9-same-as-shipping-wgm"
+                                        className="font-normal"
+                                    >
+                                        <PrettifyText tl={tl} className={errors?.consentIsAccess ? 'text-destructive' : 'text-accent'}>
+                                            Я ознакомлен(а) с Политикой конфиденциальности и даю согласие на обработку моих персональных данных
+                                        </PrettifyText>
+                                    </FieldLabel>
+                                </Field>
+                            </div>
 
                             <Button
                                 tl={tl}
                                 type='submit'
                             >
-                                Оставить заявку
+                                {isSubmitting ? 'Отправка...' : 'Оставить заявку'}
                             </Button>
                         </div>
                     </div>
