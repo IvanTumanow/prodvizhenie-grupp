@@ -2,14 +2,14 @@
 
 import { IRoute } from "@/src/shared/types";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import gsap from "gsap";
 
 interface Props {
     routes: IRoute[]
     setIsOpen: (state: boolean) => void
     isOpen: boolean
-    tl: gsap.core.Timeline | null
+    tl: RefObject<gsap.core.Timeline | null>
 }
 
 export default function MobileMenu({ routes, setIsOpen, isOpen, tl }: Props) {
