@@ -9,9 +9,9 @@ interface Props {
 export default function FooterTab({ title, routes }: Props) {
     return (
         <>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1 sm:gap-3">
                 <h3 className="text-accent">{title}</h3>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0 sm:gap-1">
                     {
                         routes.map((route, index) =>
                             <Link

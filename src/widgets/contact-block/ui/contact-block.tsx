@@ -63,7 +63,7 @@ export default function ContactBlock({ title, description, ...props }: Props) {
         <>
             <SectionContent
                 {...props}
-                helperClassName={`absolute left-[80%] top-[50%] -translate-x-1/2 -translate-y-1/2`}
+                helperClassName={`absolute top-[80%] left-[90%] sm:top-[110%] sm:left-[95%] xl:top-[60%] xl:left-[85%] -translate-x-1/2 -translate-y-1/2`}
                 dataValueId={props.dataValueId}
                 backgroundColorClassName={props.backgroundColorClassName}
                 ref={containerRef}
@@ -71,10 +71,10 @@ export default function ContactBlock({ title, description, ...props }: Props) {
             >
                 <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className="h-full w-full z-10 relative flex flex-col gap-40"
+                    className="h-full w-full z-10 relative flex flex-col gap-5 md:gap-20 lg:gap-40"
                 >
-                    <div className="flex flex-col gap-12.5">
-                        <div className="flex flex-col gap-2.5">
+                    <div className="flex flex-col gap-5 sm:gap-12.5">
+                        <div className="flex flex-col gap-1 sm:gap-12.5">
                             <PrettifyTitle
                                 className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
                                 tl={tl}
@@ -90,14 +90,14 @@ export default function ContactBlock({ title, description, ...props }: Props) {
                             </PrettifyText>
                         </div>
 
-                        <div className="flex flex-row gap-12.5">
+                        <div className="flex flex-col gap-5 lg:flex-row lg:gap-12.5">
                             <LinkContact typeContact="phone" value="+7 (921) 232 52 11" tl={tl} />
                             <LinkContact typeContact="mail" value="tanydem04@gmail.com" tl={tl} />
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-12.5">
-                        <div className="flex flex-col gap-2.5">
+                    <div className="flex flex-col gap-5 sm:gap-12.5">
+                        <div className="flex flex-col gap-1 sm:gap-12.5">
                             <PrettifyTitle
                                 className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
                                 tl={tl}
@@ -114,7 +114,7 @@ export default function ContactBlock({ title, description, ...props }: Props) {
                             </PrettifyText>
                         </div>
 
-                        <div className="flex flex-row gap-8 w-fit">
+                        <div className="flex w-fit flex-col gap-5 lg:flex-row lg:gap-8">
                             <Field orientation="horizontal" className="flex flex-col gap-2 items-start">
                                 <Input
                                     tl={tl}
@@ -135,7 +135,7 @@ export default function ContactBlock({ title, description, ...props }: Props) {
                             </Field>
                         </div>
 
-                        <div className="flex flex-col gap-2.5">
+                        <div className="flex flex-col gap-2.5 w-1/2 lg:w-full">
                             <div>
                                 <Field orientation="horizontal" >
                                     <input type={'checkbox'} {...register('consentIsAccess')} />

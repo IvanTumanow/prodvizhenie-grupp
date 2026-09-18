@@ -19,8 +19,6 @@ export default function SectionContent({ dataValueId, helperClassName, backgroun
                 'w-full h-screen p-10 shadow-2xl relative overflow-hidden will-change-transform',
                 props?.className
             )}
-
-
         >
             {
                 typeof dataValueId === 'number' &&

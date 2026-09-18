@@ -1,12 +1,12 @@
-import { useEffect, useRef } from "react";
+import { ComponentPropsWithRef, useEffect, useRef } from "react";
 import { gsap } from 'gsap'
 import {LogoFund as LogoFundSVG} from '@/src/entities/fund-logo'
 
-interface Props {
+interface Props extends ComponentPropsWithRef<'svg'> {
     tl: gsap.core.Timeline | null
 }
 
-export default function LogoFund({ tl }: Props) {
+export default function LogoFund({ tl, ...props }: Props) {
     const svgRef = useRef<SVGSVGElement>(null);
 
     useEffect(() => {
@@ -40,6 +40,7 @@ export default function LogoFund({ tl }: Props) {
 
     return (
         <LogoFundSVG
+            {...props}
             ref={svgRef}
         />
     )

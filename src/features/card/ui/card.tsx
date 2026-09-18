@@ -39,7 +39,7 @@ export default function CardCompare({ title, description, tl, ...props }: Props)
   }, [tl]);
 
   return (
-    <Card className={cn("w-full pt-6 origin-bottom", props.className)} ref={cardRef} {...props}>
+    <Card className={cn("w-full pt-2 sm:pt-6 origin-bottom lg:shrink-0 lg:max-w-full lg:w-[40%]", props.className)} ref={cardRef} {...props}>
       <CardHeader>
         <CardTitle>
           <PrettifyTitle tl={tl} className="text-[#E00655]">

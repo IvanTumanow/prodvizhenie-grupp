@@ -48,13 +48,13 @@ export default function LeaderLine({ children, isReverse, tl, className }: Props
     return (
         <span className={`relative w-fit ${className}`} ref={ref}>
             <PrettifyText
-                className={`text-shadow-xs text-accent absolute -top-4 ${isReverse ? 'left-0' : 'right-0'}`}
+                className={`text-shadow-xs text-accent absolute -top-4 ${isReverse ? 'left-0' : 'sm:right-0'}`}
                 tl={tl}
             >
                 {children}
             </PrettifyText>
 
-            <i ref={svgRef} className={isReverse ? "inline-block rotate-180" : "inline-block"}>
+            <i ref={svgRef} className={`${isReverse ? "inline-block sm:rotate-180" : "inline-block sm:rotate-0"} rotate-180`}>
                 <svg width={width} height="25" viewBox={`0 0 ${width} 25`} fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle
                         ref={bigCircleRef}

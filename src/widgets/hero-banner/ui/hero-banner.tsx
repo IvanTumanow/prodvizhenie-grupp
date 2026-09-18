@@ -19,7 +19,7 @@ export default function HeroBanner({ title, subTitle, items, ...props }: Props) 
     return (
         <SectionContent
             {...props}
-            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[50%] top-[65%] -translate-x-1/2 -translate-y-1/2' : ''}`}
+            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[92%] top-[95%] sm:left-[50%] sm:top-[100%] md:left-[50%] md:top-[90%] xl:top-[70%] 2xl:top-[65%]  -translate-x-1/2 -translate-y-1/2' : ''}`}
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
@@ -36,7 +36,7 @@ export default function HeroBanner({ title, subTitle, items, ...props }: Props) 
                     </PrettifyTitle>
 
                     <PrettifyTitle
-                        className={`text-shadow-[0_20px_0_color-mix(in_srgb,var(--accent)_10%,transparent),0_10px_0_color-mix(in_srgb,var(--accent)_20%,transparent)] text-6xl ${props.backgroundColorClassName ? 'text-accent' : ''}`}
+                        className={`text-shadow-[0_20px_0_color-mix(in_srgb,var(--accent)_10%,transparent),0_10px_0_color-mix(in_srgb,var(--accent)_20%,transparent)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${props.backgroundColorClassName ? 'text-accent' : ''}`}
                         tl={tl}
                     >
                         {subTitle.toUpperCase()}

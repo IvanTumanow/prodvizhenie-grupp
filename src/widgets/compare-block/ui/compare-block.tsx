@@ -24,7 +24,7 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
     return (
         <SectionContent
             {...props}
-            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[80%] top-[50%] -translate-x-1/2 -translate-y-1/2' : ''}`}
+            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[80%] top-[80%] sm:left-[75%] sm:top-[90%] lg:left-[80%] lg:top-[50%] -translate-x-1/2 -translate-y-1/2' : ''}`}
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
@@ -32,7 +32,7 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
         >
             <div className="h-full z-10 relative flex flex-row justify-center items-center">
                 <div className="flex flex-col gap-12.5 h-full">
-                    <div className="flex flex-col gap-4.5 max-w-[75%]">
+                    <div className="flex flex-col gap-4.5 w-full ">
                         <PrettifyTitle
                             className={'text-[#E00655]'}
                             tl={tl}
@@ -54,10 +54,10 @@ export default function CompareBlock({ title, subTitle, description, floatingIte
                         </PrettifyText>
                     </div>
 
-                    <CardsLists items={items} tl={tl} />
+                    <CardsLists items={items} tl={tl}/>
                 </div>
 
-                <div className="mx-5">
+                <div className="mx-5 absolute xl:static left-[15%] top-[40%] lg:top-0 lg:left-[35%]">
                     <Star tl={tl} />
                 </div>
 

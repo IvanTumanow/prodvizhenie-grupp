@@ -37,28 +37,30 @@ export default function Footer({ ...props }: SectionContentProps) {
                 ref={containerRef}
                 className="h-fit py-12.5"
             >
-                <div className="flex flex-col gap-12.5">
-                    <div className="flex flex-row gap-50">
+                <div className="flex flex-col gap-3 sm:gap-12.5">
+                    <div className="flex flex-col sm:flex-row gap-5 lg:gap-20 xl:gap-50">
                         <FooterTab {...tabApp} />
                         <FooterTab {...tabDocuments} />
                         <FooterTab {...tabCompany} />
                     </div>
 
-                    <p className="text-muted-foreground">
+                    <span className="block bg-white opacity-10 h-px w-full"/>
+
+                    <p className="text-muted-foreground text-xs sm:text-base">
                         Все изображения на сайте носят информационный (иллюстративный) характер и не являются офертой. Тип и форма упаковки для розлива готового продукта определяются Заказчиком самостоятельно на этапе внедрения технологии. Предоставляемая технология производства не привязана к конкретному виду упаковки. Итоговый выбор тары (стекло, ПЭТ, мягкий пакет или бочка) остается за Заказчиком и определяется исключительно маркетинговой стратегией и производственными мощностями Заказчика
                     </p>
 
-                    <div className="flex flex-row gap-12.5 justify-start items-start">
-                        <Link href="https://fasie.ru/" target="blank">
-                            <LogoFund width={100} height={50} />
+                    <div className="flex flex-row gap-3 sm:gap-12.5 justify-start items-start">
+                        <Link href="https://fasie.ru/" target="blank" className="">
+                            <LogoFund className="h-12.5 w-25" />
                         </Link>
 
-                        <p className="text-muted-foreground">
+                        <p className="text-muted-foreground text-xs sm:text-base">
                             Проект реализован при поддержке Фонда содействия инновациям в рамках программы “Студенческий стартап” мероприятия «Платформа университетского технологического предпринимательства» федерального проекта “Технологии”
                         </p>
                     </div>
 
-                    <p className="text-muted-foreground">ООО &quot;ПРОДВИЖЕНИЕ-ГРУПП&quot;. Все права защищены.</p>
+                    <p className="text-muted-foreground text-xs sm:text-base">ООО &quot;ПРОДВИЖЕНИЕ-ГРУПП&quot;. Все права защищены.</p>
                 </div>
             </SectionContent>
         </footer>

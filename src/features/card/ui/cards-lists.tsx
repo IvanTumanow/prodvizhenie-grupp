@@ -13,7 +13,7 @@ export default function CardsLists({ items, tl, cardProps, ...props }: Props) {
         <>
             {
                 items && items.length > 0 &&
-                <div className={cn("flex flex-row gap-6", props.className)} {...props}>
+                <div className={cn("flex flex-col gap-2 sm:flex-row sm:gap-6 lg:max-w-[70%] lg:flex-wrap", props.className)} {...props}>
                     {
                         items.map(item => (
                             <Card

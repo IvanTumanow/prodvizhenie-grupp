@@ -31,7 +31,7 @@ export default function Circles({ tl }: Props) {
   }, [tl]);
 
   return (
-    <div ref={containerRef} className="w-[50%] relative">
+    <div ref={containerRef} className="w-[50%] absolute top-[110%] left-[60%] md:top-full md:left-[70%] lg:top-[90%] lg:left-[70%] xl:relative xl:top-0 xl:left-0">
       {Array(3)
         .fill(0)
         .map((_, index) => {

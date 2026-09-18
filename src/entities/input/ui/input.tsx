@@ -15,7 +15,7 @@ export default function Input({ tl, wrapperProps, ...props }: Props) {
                 <ShadcnInput
                     {...props}
                     className={cn(
-                        'min-w-80 border-none shadow-none',
+                        'sm:min-w-80 border-none shadow-none',
                         'focus:border-none focus-visible:border-none',
                         'focus:ring-0 focus-visible:ring-0',
                         'focus-visible:ring-offset-0',

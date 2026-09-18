@@ -51,7 +51,7 @@ function PrettifyText({ tl, ...props }: Props) {
                 props.children && typeof props.children === 'string' &&
                 props.children.trim().split("\n").map((line, i) =>
                     line.trim() === "" ? (
-                        <span key={i} className="block h-4" />
+                        <span key={i} className="block sm:h-4" />
                     ) : (
                         <span key={i} className="block">
                             {line.split(" ").map((w, j) => (

@@ -81,7 +81,7 @@ export default function EntitiesWrapper({ tl, ...props }: Props) {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 className={cn(
-                    'text-accent font-medium py-2.5 px-15 border-2 border-accent rounded-full items-center select-none will-change-transform inline-flex w-fit',
+                    'text-accent font-medium py-1 sm:py-2.5 px-3 sm:px-15 border-2 border-accent rounded-full items-center select-none will-change-transform inline-flex w-fit',
                     props.className
                 )}
                 style={{ transformOrigin: "center bottom" }}

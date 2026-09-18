@@ -20,7 +20,7 @@ export default function AboutProductBlock({ title, description, items, ...props 
     return (
         <SectionContent
             {...props}
-            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[25%] top-[50%] -translate-x-1/2 -translate-y-1/2' : ''}`}
+            helperClassName={`absolute ${typeof props.dataValueId === 'number' ? 'left-[85%] top-[95%] sm:left-[95%] sm:top-[120%] lg:top-[100%] lg:left-[95%] xl:left-[25%] xl:top-[50%] -translate-x-1/2 -translate-y-1/2' : ''}`}
             dataValueId={props.dataValueId}
             backgroundColorClassName={props.backgroundColorClassName}
             ref={containerRef}
@@ -28,9 +28,9 @@ export default function AboutProductBlock({ title, description, items, ...props 
         >
 
             <div className="flex flex-row w-full h-full z-10 relative">
-                <Circles tl={tl} />
+                <Circles tl={tl}/>
 
-                <div className="flex flex-col gap-12.5 w-[50%]">
+                <div className="flex flex-col gap-12.5 w-full 2xl:w-[50%]">
                     <div className="flex flex-col gap-4">
                         <PrettifyTitle
                             className={`${props.backgroundColorClassName ? 'text-accent' : ''}`}
@@ -53,7 +53,7 @@ export default function AboutProductBlock({ title, description, items, ...props 
                         cardProps={{
                             className: 'basis-[48%] grow [&_h2]:text-2xl w-full'
                         }}
-                        className="flex flex-wrap gap-5"
+                        className="flex-wrap gap-5 hidden sm:flex"
                     />
                 </div>
             </div>
